@@ -2,6 +2,13 @@
 
 Create GoCD server and agent images for docker, AWS, Azure...
 
+#Building
+
+```
+$ packer build -var 'gocd_version=xx.x.x' go-server-packer.json
+$ packer build -var 'gocd_version=xx.x.x' go-server-demo-packer.json
+```
+
 # License
 
 ```plain

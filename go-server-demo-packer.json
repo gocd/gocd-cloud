@@ -1,0 +1,30 @@
+{
+  "variables": {
+    "gocd_version": ""
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-0b33d91d",
+      "ami_groups": "all",
+      "instance_type": "m3.medium",
+      "ssh_username": "ec2-user",
+      "ami_name": "GoCD Demo AWS Image {{user `gocd_version`}}",
+      "spot_price": "auto",
+      "spot_price_auto_product": "Linux/UNIX (Amazon VPC)"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum update -y",
+        "sudo yum install -y java-1.8.0-openjdk-headless git mercurial subversion openssh-clients bash wget",
+        "sudo yum remove -y java-1.7.0-openjdk",
+        "sudo wget -q https://download.gocd.io/gocd.repo -O /etc/yum.repos.d/gocd.repo",
+        "sudo yum install -y go-server go-agent"
+      ]
+    }
+  ]
+}

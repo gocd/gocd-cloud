@@ -6,7 +6,15 @@
     {
       "type": "amazon-ebs",
       "region": "us-east-1",
-      "source_ami": "ami-0b33d91d",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "amzn-ami-hvm-*-x86_64-gp2",
+          "root-device-type": "ebs"
+        },
+        "owners": ["137112412989"],
+        "most_recent": true
+      },
       "ami_groups": "all",
       "instance_type": "m3.medium",
       "ssh_username": "ec2-user",

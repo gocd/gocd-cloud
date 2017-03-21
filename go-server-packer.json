@@ -18,9 +18,17 @@
       "ami_groups": "all",
       "instance_type": "m3.medium",
       "ssh_username": "ec2-user",
-      "ami_name": "GoCD Server AWS Image {{user `gocd_version`}}",
+      "ami_name": "GoCD Server {{user `gocd_version`}}",
       "spot_price": "auto",
       "spot_price_auto_product": "Linux/UNIX (Amazon VPC)",
+      "tags": {
+        "GoCD-Version": "{{user `gocd_version`}}",
+        "Name": "GoCD Server {{user `gocd_version`}}"
+      },
+      "snapshot_tags": {
+        "GoCD-Version": "{{user `gocd_version`}}",
+        "Name": "GoCD Server {{user `gocd_version`}}"
+      },
       "ami_regions": [
         "ap-south-1",
         "eu-west-2",

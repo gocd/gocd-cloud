@@ -18,9 +18,17 @@
       "ami_groups": "all",
       "instance_type": "m3.medium",
       "ssh_username": "ec2-user",
-      "ami_name": "GoCD Demo AWS Image {{user `gocd_version`}}",
+      "ami_name": "GoCD Demo {{user `gocd_version`}}",
       "spot_price": "auto",
-      "spot_price_auto_product": "Linux/UNIX (Amazon VPC)"
+      "spot_price_auto_product": "Linux/UNIX (Amazon VPC)",
+      "tags": {
+        "GoCD-Version": "{{user `gocd_version`}}",
+        "Name": "GoCD Demo {{user `gocd_version`}}"
+      },
+      "snapshot_tags": {
+        "GoCD-Version": "{{user `gocd_version`}}",
+        "Name": "GoCD Demo {{user `gocd_version`}}"
+      }
     },
     {
       "type": "virtualbox-iso",

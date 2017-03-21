@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="89">
+  <server artifactsdir="artifacts" agentAutoRegisterKey="38f49211-8162-4dc6-98d8-752584b3e48a" commandRepositoryLocation="default" serverId="a601888b-e5a4-40c7-befc-ee839572d694" />
+  <pipelines group="first">
+    <pipeline name="rogue_one">
+      <materials>
+        <git url="https://github.com/gocd-contrib/getting-started-repo.git" />
+      </materials>
+      <stage name="defaultStage">
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <exec command="./build" />
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="frankenstein">
+      <materials>
+        <git url="https://github.com/gocd/api.go.cd.git" />
+      </materials>
+      <stage name="defaultStage">
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <ant />
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+  <agents>
+    <agent hostname="agent-smith" ipaddress="127.0.0.1" uuid="df49956e-0cce-4990-bdf5-c0a5894ceef7" />
+  </agents>
+</cruise>
+

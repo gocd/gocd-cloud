@@ -75,6 +75,26 @@
         "sudo wget -q https://download.gocd.io/gocd.repo -O /etc/yum.repos.d/gocd.repo",
         "sudo yum install -y go-server go-agent"
       ]
+    },
+    {
+      "type": "file",
+      "source": "config",
+      "destination": "/tmp"
+    },
+    {
+      "type": "file",
+      "source": "db",
+      "destination": "/tmp"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo cp -a /tmp/config/. /etc/go",
+        "sudo cp -r /tmp/db /var/lib/go-server/",
+        "sudo chown -R go:go /etc/go /var/lib/go-server/db",
+        "sudo chmod 770 /etc/go",
+        "sudo chmod 775 /var/lib/go-server/db"
+      ]
     }
   ]
 }

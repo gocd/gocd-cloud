@@ -27,7 +27,8 @@
       },
       "snapshot_tags": {
         "GoCD-Version": "{{user `gocd_version`}}",
-        "Name": "GoCD Server {{user `gocd_version`}}"
+        "Name": "GoCD Server {{user `gocd_version`}}",
+        "Type": "server"
       },
       "ami_regions": [
         "ap-south-1",

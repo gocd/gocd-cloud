@@ -1,12 +1,13 @@
 {
   "variables": {
     "gocd_version": "",
-    "instance_type": "c5.large"
+    "instance_type": "c5.large",
+    "region": "{{env `REGION`}}"
   },
   "builders": [
     {
       "type": "amazon-ebs",
-      "region": "us-east-1",
+      "region": "{{user `region`}}",
       "source_ami_filter": {
         "filters": {
           "virtualization-type": "hvm",

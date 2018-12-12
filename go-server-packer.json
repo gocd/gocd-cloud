@@ -2,7 +2,8 @@
   "variables": {
     "gocd_version": "",
     "instance_type": "c5.large",
-    "region": "{{env `REGION`}}"
+    "region": "{{env `REGION`}}",
+    "extra_ami_region_to_copy_to": "{{env `EXTRA_AMI_REGION_TO_COPY_TO`}}"
   },
   "builders": [
     {
@@ -18,6 +19,7 @@
         "most_recent": true
       },
       "ami_groups": "all",
+      "ami_regions": ["{{user `extra_ami_region_to_copy_to`}}"],
       "instance_type": "{{user `instance_type`}}",
       "ssh_username": "ec2-user",
       "ami_name": "GoCD Server {{user `gocd_version`}}",

@@ -3,7 +3,9 @@
     "gocd_version": "",
     "instance_type": "c5.large",
     "region": "{{env `REGION`}}",
-    "extra_ami_region_to_copy_to": "{{env `EXTRA_AMI_REGION_TO_COPY_TO`}}"
+    "extra_ami_region_to_copy_to": "{{env `EXTRA_AMI_REGION_TO_COPY_TO`}}",
+    "openjdk_url": "https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz",
+    "jre_path": "/usr/local/jre"
   },
   "builders": [
     {
@@ -39,11 +41,14 @@
       "type": "shell",
       "inline": [
         "sudo yum update -y",
-        "sudo yum install -y java-1.8.0-openjdk-headless git mercurial subversion openssh-clients bash wget",
+        "sudo yum install -y git mercurial subversion openssh-clients bash wget",
         "sudo yum remove -y java-1.7.0-openjdk",
+        "sudo mkdir -p {{ user `jre_path` }} && wget {{ user `openjdk_url` }} -O java11.tar.gz && sudo tar -xf java11.tar.gz -C {{ user `jre_path` }} --strip 1 --exclude \"jdk*/lib/src.zip\" --exclude \"jdk*/include\" --exclude \"jdk*/jmods\"",
+        "echo 'PATH=$PATH:{{ user `jre_path` }}/bin' | sudo tee -a /etc/profile",
         "sudo wget -q https://download.gocd.io/gocd.repo -O /etc/yum.repos.d/gocd.repo",
         "sudo yum install -y go-server",
-        "sudo yum clean all"
+        "sudo yum clean all",
+        "rm java11.tar.gz"
       ]
     }
   ]

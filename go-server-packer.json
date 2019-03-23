@@ -4,7 +4,7 @@
     "instance_type": "c5.large",
     "region": "{{env `REGION`}}",
     "extra_ami_region_to_copy_to": "{{env `EXTRA_AMI_REGION_TO_COPY_TO`}}",
-    "openjdk_url": "https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz",
+    "openjdk_url": "https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz",
     "jre_path": "/usr/local/jre"
   },
   "builders": [

@@ -33,56 +33,6 @@
         "GoCD-Version": "{{user `gocd_version`}}",
         "Name": "GoCD Demo {{user `gocd_version`}}"
       }
-    },
-    {
-      "type": "virtualbox-iso",
-      "virtualbox_version_file": ".vbox_version",
-      "headless": false,
-      "guest_os_type": "RedHat_64",
-      "disk_size": 40000,
-      "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/CentOS/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
-      "iso_checksum": "71a7aa147877b413497cdff5b1e0aa5bc0c9484f",
-      "iso_checksum_type": "sha1",
-      "boot_command": [
-        "<tab> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-7.0-x86_64/ks.cfg<enter><wait>"
-      ],
-      "boot_wait": "5s",
-      "http_directory": "http",
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "2048"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2" ]
-      ],
-      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p"
-    },
-    {
-      "type": "vmware-iso",
-      "headless": true,
-      "guest_os_type": "centos-64",
-      "disk_size": 40000,
-      "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/CentOS/7.3.1611/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
-      "iso_checksum": "71a7aa147877b413497cdff5b1e0aa5bc0c9484f",
-      "iso_checksum_type": "sha1",
-      "boot_command": [
-        "<tab> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-7.0-x86_64/ks.cfg<enter><wait>"
-      ],
-      "boot_wait": "5s",
-      "http_directory": "http",
-      "tools_upload_flavor": "linux",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "vmx_data": {
-        "memsize": "2048",
-        "numvcpus": "2",
-        "vhv.enable": "TRUE"
-      },
-      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     }
   ],
   "provisioners": [
